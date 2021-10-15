@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        function myInstanceof(left, right) {
+            let leftProto = Object.getPrototypeOf(left);
+            let rightProto = right.prototype;
+            while (true) {
+                if (!leftProto) {
+                    return false
+                }
+                if (leftProto == rightProto) {
+                    return true;
+                }
+                leftProto = Object.getPrototypeOf(leftProto);
+            }
+        }
+        console.log(myInstanceof([], Array));
+        console.log(myInstanceof({}, Object));
+        console.log(myInstanceof(function() {}, Function));
+        console.log(myInstanceof({}, Array));
+        console.log(myInstanceof([], Object));
+        console.log(myInstanceof(function() {}, Object));
+        console.log([] instanceof Object);
+        console.log({}
+            instanceof Object);
+        console.log(function() {}
+            instanceof Object);
+    </script>
+</body>
+
+</html>
