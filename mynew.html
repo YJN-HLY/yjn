@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        function fn(x, y) {
+            this.x = x;
+            this.y = y;
+            return this;
+        }
+
+        function mynew(...agt) {
+            let newobj = null;
+            let constructor = Array.prototype.shift.call(agt);
+            newobj = Object.create(constructor.prototype);
+            let result = constructor.apply(newobj, agt);
+            console.log((typeof result));
+            if (result && (typeof result === 'object' || typeof result === 'function')) {
+                console.log(11);
+                return result;
+            } else {
+                console.log(22);
+                return newobj;
+            }
+        }
+        let myobj = mynew(fn, 2, 3);
+        console.log(myobj);
+        let innew = new Object();
+        console.log(innew);
+    </script>
+</body>
+
+</html>
